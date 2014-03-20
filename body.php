@@ -11,8 +11,8 @@ $author_count = db_get_field('SELECT COUNT(*) FROM authors');
 
 ?>
 
-<div id="formreferral" style="margin: 12px auto 0px;" class="main">
-    <div id="info" style="margin: 12px auto 0px;" class="">
+<div style="margin: 12px auto 0px;" class="main">
+    <div style="margin: 12px auto 0px;" class="">
 	  <div class="title">
 	    <b>General:</b>
 	    <span class="padding_left">Books: <?php echo $books_count;?>  item(s)</span>
@@ -27,12 +27,18 @@ $author_count = db_get_field('SELECT COUNT(*) FROM authors');
 		      }
 		?>
 	    </b>
-	    
 	  </div>
-	 
     </div>
-    <form name="main_form"  method="post" action="" >
-     test
-    </form>
+
+    <div style="float: left; width: 100%;">
+    
+    <?php if($sign_in === 'Admin'){
+	    require('include/search.php');
+	  }else{
+	    require('include/no_search.php');
+	  }
+    ?>
+   
+     </div>
     <div style="clear:both;"></div>
 </div>
