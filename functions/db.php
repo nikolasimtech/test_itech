@@ -47,6 +47,7 @@ function fn_table_create($table_name = '', $fields = array(), $key = ''){
 
 function fn_db_query($query){
     $result = mysql_query($query, CONNECT_TRUE);
+    return $result;
 }
 
 function fn_create_db_and_tables($name){
@@ -59,4 +60,46 @@ function fn_tables_exists($tables){
       fn_table_create( $table_name, $v['type'], $v['key'] );// create table if no exist
     }
 
+}
+
+function db_fetch_array($result, $flag = MYSQL_ASSOC){
+	return mysql_fetch_array($result, $flag);
+}
+function free_result($result){
+	@mysql_free_result($result);
+}
+
+function db_fetch_row($result){
+	return mysql_fetch_row($result);
+}
+
+function db_get_array($query)
+{
+	$args = func_get_args();
+
+	if ($_result = call_user_func_array('fn_db_query', $args)) {
+
+		while ($arr = db_fetch_array($_result)) {
+			$result[] = $arr;
+		}
+
+		free_result($_result);
+	}
+
+	return !empty($result) ? $result : array();
+}
+
+function db_get_field($query)
+{
+	$args = func_get_args();
+
+	if ($_result = call_user_func_array('fn_db_query', $args)) {
+	
+		$result = db_fetch_row($_result);
+
+		free_result($_result);
+
+	}
+
+	return (isset($result) && is_array($result)) ? $result[0] : NULL;
 }

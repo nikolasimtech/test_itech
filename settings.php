@@ -15,3 +15,7 @@ $config['db_name'] = 'itech_test';
 $config['db_user'] = 'root';
 $config['db_password'] = '1111';
 $config['db_type'] = 'mysql';
+
+
+define('ADMIN_PASSWORD', 'admin');
+define('ADMIN_LOGIN', 'admin');

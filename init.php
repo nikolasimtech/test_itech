@@ -6,7 +6,8 @@ require('functions/debugs.php');
 require('functions/common.php');
 
 $connect = fn_db_connect($config['db_host'],$config['db_user'],$config['db_password']);
- 
+
+// Auto install, create db and tables
 if( !empty($connect) ){
   $select = fn_db_select($config['db_name']);
   
@@ -43,6 +44,14 @@ if( !empty($connect) ){
     );
     
     fn_tables_exists($tables); // create tables if no exist
+  }
+  
+  if( isset($_POST['auth']) ){
+      fn_sign_in($_POST['auth']); // start session
+  }
+  
+  if( isset($_POST['out']) ){
+      fn_sign_out($_POST['out']); // end session
   }
 
 }else{
