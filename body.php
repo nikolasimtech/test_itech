@@ -18,6 +18,13 @@ $author_count = db_get_field('SELECT COUNT(*) FROM authors');
 	    <span class="padding_left">Books: <?php echo $books_count;?>  item(s)</span>
 	    <span class="padding_left">Authors: <?php echo $author_count;?>  item(s)</span>
 	  </div>
+	  
+	  <?php 
+	      if($sign_in === 'Admin'){
+		require('include/add_items.php');
+	      }
+	  ?>
+
 	  <div class="auth">
 	    <b>
 		<?php if($sign_in === 'Admin'){

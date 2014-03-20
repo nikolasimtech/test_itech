@@ -6,5 +6,5 @@
     <b>Password:</b><br/>
     <input type="text" class="short_input" name="auth[pass]" value="">
     <br/>
-    <input type="submit" class="button" value="SUBMIT"/>
+    <input type="submit" class="button" value="Sign in"/>
 </form>
