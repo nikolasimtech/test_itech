@@ -5,6 +5,35 @@
     position: relative;
 }
 
+.small_inform {
+    float:left;
+    font-size: 10px;
+}
+
+.closer {
+    cursor: pointer;
+    float: right;
+    margin-right: -30px;
+    margin-top: -30px;
+}
+
+.add_items_show {
+    color: #FF0000;
+    cursor: pointer;
+    float: left;
+    padding-left: 50px;
+    padding-top: 20px;
+    width: 100px;
+}
+.add_items {
+
+    background: none repeat scroll 0 0 #808080;
+    border-radius: 31px;
+    padding: 45px;
+    position: absolute;
+    width: 50%;
+    z-index: 99;
+}
 .delete {
     float: right;
     margin-top: -26px;

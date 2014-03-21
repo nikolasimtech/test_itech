@@ -3,8 +3,14 @@
     $authors_add = db_get_array("SELECT * FROM authors");
 ?>
 
-<div style="float:left; margin-left:50px;">
-    <form name="add_books"  method="post" action="">
+<div id="add_items_show" class="add_items_show" onclick="fn_show_add_items();">
+    <span>+ Add item</span>
+</div>
+
+<div class="add_items" id="add_items" style="display:none;">
+    <span class="closer" onclick="fn_hide_add_items();">X</span>
+
+    <form name="add_books"  method="post" action="" style="text-align: center;">
       <input type="text" name="add_book" class="short_input" value=""/>
 	  <?php
 	  if( !empty($authors_add) ){
@@ -23,7 +29,7 @@
       <input type="submit" value="+ Add Book"/>
     </form>
 
-    <form name="add_author"  method="post" action="" >
+    <form name="add_author"  method="post" action="" style="text-align: center;">
      <input type="text" name="add_author"  class="short_input" value="" />
      
       <?php
@@ -43,3 +49,5 @@
      <input type="submit" value="+ Add Author"/>
     </form>
 </div>
+
+

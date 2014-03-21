@@ -24,6 +24,14 @@ $author_count = db_get_field('SELECT COUNT(*) FROM authors');
 	  <?php 
 	      if(EDIT_OK == 'ok'){
 		require('include/add_items.php');
+	      }else{
+		$image_kaptcha = '  <span style="position: absolute;top: 20px;">Image for verification</span>  <img src="captcha.php" style="height: 40px;
+    margin-left: 206px;
+    margin-top: 21px;
+    position: absolute;
+    top: -6px;
+    width: 100px;"/>';
+		echo $image_kaptcha;
 	      }
 	  ?>
 
@@ -41,11 +49,11 @@ $author_count = db_get_field('SELECT COUNT(*) FROM authors');
 
     <div style="float: left; width: 100%;">
     
-    <?php if(EDIT_OK == 'ok'){
+    <?php //if(EDIT_OK == 'ok'){
 	    require('include/search.php');
-	  }else{
-	    require('include/no_search.php');
-	  }
+	 //}else{
+	   // require('include/no_search.php');
+	 // }
     ?>
    
      </div>

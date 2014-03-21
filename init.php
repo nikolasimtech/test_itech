@@ -61,7 +61,7 @@ if( !empty($connect) ){
   
   if( !empty($_POST) ){
       fn_add_items($_POST);
-      fn_delete_items($_POST);
+      fn_delete_items($_POST);//fn_print_r($_POST);
       fn_edit_items($_POST);
   }
 

@@ -7,7 +7,11 @@
       define('NO_REZULT', false);
     }
     if(EDIT_OK == 'ok' && NO_REZULT == false){
-      require('include/edit_delete.php');
+	if( !empty($_REQUEST['t']) && !empty($_REQUEST['id'])){
+	    require('include/edit_item.php');
+	}else{
+	    require('include/edit_delete.php');
+	}
     }
 ?>
 
@@ -23,11 +27,26 @@
     <?php
 	if( !empty($books) ){
 	    foreach($books as $key_ => $book_name){
+	    
+	    $id_n = $book_name['ID'];
+	    $query = "SELECT name FROM authors INNER JOIN links ON links.ID_authors = authors.ID WHERE links.ID_books = '$id_n'";
+	    $parents = db_get_array($query);
 		$text = '<tr><td class="grey">';
 		if(EDIT_OK == 'ok'){
 		$text .= '<span style="float:left;"><input type="checkbox" name="book['.$book_name['ID'].']" /></span>';
 		}
 		$text .= $book_name['name'];
+		if( !empty($parents) ){
+		    $text .= '<br/><span class="small_inform">Author(s):';
+			foreach($parents as $k => $a){
+			   $text .= ' '.$a['name'].' '; 
+			}
+		    $text .= '</span>';
+		}
+		
+		if(EDIT_OK == 'ok'){
+		$text .= '<span style="float:right;"> <a href="?t=b&amp;id='.$id_n.'" target="_blank" >Edit </a></span>';
+		}
 		$text .= '</tr></td>';
 		echo $text;
 	    }
@@ -49,12 +68,26 @@
     <tbody>
     <?php
 	if( !empty($authors) ){
+	    
 	    foreach($authors as $key_a => $a_name){
+	    $id_n = $a_name['ID'];
+	    $query = "SELECT name FROM books INNER JOIN links ON links.ID_books = books.ID WHERE links.ID_authors = '$id_n'";
+	    $parents = db_get_array($query);
 		$text = '<tr><td class="green">';
 		if(EDIT_OK == 'ok'){
 		$text .= '<span style="float:left;"><input type="checkbox" name="author['.$a_name['ID'].']" /></span>';
 		}
 		$text .= $a_name['name'];
+		if( !empty($parents) ){
+		    $text .= '<br/><span class="small_inform">Book(s):';
+			foreach($parents as $k => $a){
+			   $text .= ' '.$a['name'].' '; 
+			}
+		    $text .= '</span>';
+		}
+		if(EDIT_OK == 'ok'){
+		$text .= '<span style="float:right;"> <a href="?t=a&amp;id='.$id_n.'" target="_blank" >Edit </a></span>';
+		}
 		$text .= '</tr></td>';
 		echo $text;
 	    }
@@ -66,6 +99,11 @@
 </table>
 <?php
     if(EDIT_OK == 'ok' && NO_REZULT == false){
-	echo '</form>';
+	if( !empty($_REQUEST['t']) && !empty($_REQUEST['id'])){
+	
+	}else{
+	    echo '</form>';
+	}
+	
     }
 ?>

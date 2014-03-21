@@ -8,8 +8,7 @@ function fn_stop_work(){
 
 function fn_sign_in($data){
     if( isset($data['login']) && isset($data['pass']) ){
-	 if( $data['login'] == ADMIN_LOGIN && $data['pass'] == ADMIN_PASSWORD ){
-	    //return fn_start_session();
+	 if( $data['login'] == ADMIN_LOGIN && $data['pass'] == ADMIN_PASSWORD && $_POST['kapcha'] == $_SESSION['rand_code']){
 	    $_SESSION['auth_ok'] = true;
 	 }
     }
@@ -61,7 +60,7 @@ function fn_links_insert($table, $link_data,$name, $r){
 }
 
 function fn_delete_items($data){
-  if( isset($data['delete']) && $data['delete'] == 'del'){
+  if( isset($data['delete'])){
       if( !empty($data['author']) ){
 	  $query = "delete FROM authors  WHERE";
 	  $count = count($data['author']);
@@ -70,7 +69,7 @@ function fn_delete_items($data){
 	      $i = $i + 1;
 	      $query .= " authors.ID = '$key'";
 	      if($i != $count){
-		$query .= ',';
+		$query .= ' OR ';
 	      }
 	  }
 	  $query .= ';';
@@ -86,10 +85,12 @@ function fn_delete_items($data){
 	      $i = $i + 1;
 	      $query .= " books.ID = '$key'";
 	      if($i != $count){
-		$query .= ',';
+		$query .= ' OR ';
 	      }
 	  }
 	  $query .= ';';
+	  
+	 // fn_print_r($query);
 	  fn_db_query($query);
 	  fn_delete_links($data['book'], 'books',$count);
       }
@@ -104,7 +105,7 @@ function fn_delete_links($data, $table,$count){
 	$i = $i + 1;
 	$query .= " links.ID_$table = '$key'";
 	if($i != $count){
-	  $query .= ',';
+	  $query .= ' OR ';
 	}
     }
     $query .= ';';
@@ -117,10 +118,13 @@ function fn_edit_items( $data ){
 }
 
 function fn_refound_post_data(){
-    unset($_POST);
-    $_POST = $_SESSION['post_old'];
-    $_SESSION['post'] = $_SESSION['post_old'];
-    unset($_SESSION['post_old']);
+
+    if( isset($_SESSION['post_old']) ){
+      unset($_POST);
+      $_POST = $_SESSION['post_old'];
+      $_SESSION['post'] = $_SESSION['post_old'];
+      unset($_SESSION['post_old']);
+    }
 }
 
 function fn_sign_out($data){

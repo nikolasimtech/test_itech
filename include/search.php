@@ -1,6 +1,9 @@
 <?php
 
-    if( !empty($_POST['search']['q']) ){
+    if( (!empty($_POST['search']['q']) && !empty($_POST['kapcha']) && $_POST['kapcha'] == $_SESSION['rand_code'] && EDIT_OK != 'ok') ||
+	(!empty($_POST['search']['q']) && EDIT_OK == 'ok')
+    ){
+
 	$params['show_all'] = false;
 	
 	if($_POST['search']['radio'] == 'b'){
@@ -35,13 +38,18 @@
 ?>
 
 <form name="search_form"  method="post" action="" >
-    <div>
+    <div style="position: absolute;top: 140px; width: 691px;">
       Search in: 
       <input type="radio" name="search[radio]"  value="b" <?php if( !empty($params['books']) ){ echo 'checked="checked"';} ?>/>  books  
       <input type="radio" name="search[radio]" value="a" <?php if( !empty($params['author']) ){ echo 'checked="checked"';}?>/> author  <br/>
       <input type="text" class="input_search" name="search[q]" value="<?php echo $q;?>" />
       
       <input type="submit" value="search"/>
+      <?php 
+	if(EDIT_OK != 'ok'){
+	echo '<br/><input placeholder="Kaptcha" type="text" style="width: 90px;" name="kapcha" />';
+	}
+      ?>
     </div>
 </form>
 
