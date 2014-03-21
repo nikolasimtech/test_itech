@@ -49,19 +49,19 @@ if( !empty($connect) ){
     
   if( isset($_POST['auth']) ){
       fn_sign_in($_POST['auth']); // start session
-      unset($_POST['auth']);
+    //  unset($_POST['auth']);
   }
   
   if( isset($_POST['out']) ){
       fn_sign_out($_POST['out']); // end session
-      unset($_POST['out']);
+      //unset($_POST['out']);
   }
   
   if( !empty($_POST) ){
       fn_add_items($_POST);
   }
   
-  unset($_POST);
+ // unset($_POST);
   
 }else{
   fn_stop_work();

@@ -3,11 +3,11 @@
 // Show only critical errors.
 ini_set("display_errors","1");
 if (version_compare(phpversion(), "5.0.0", ">")==1) {
-	//ini_set("error_reporting", E_ALL | E_STRICT);
-	ini_set("error_reporting", E_ERROR | E_STRICT);
+	ini_set("error_reporting", E_ALL | E_STRICT);
+	//ini_set("error_reporting", E_ERROR | E_STRICT);
 } else {
-	//ini_set("error_reporting", E_ALL);
-	ini_set("error_reporting", E_ERROR);
+	ini_set("error_reporting", E_ALL);
+	//ini_set("error_reporting", E_ERROR);
 };
 
 $config['db_host'] = 'localhost';

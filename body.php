@@ -4,8 +4,10 @@ $books_count = db_get_field('SELECT COUNT(*) FROM books');
 $author_count = db_get_field('SELECT COUNT(*) FROM authors');
 
   if( !empty($_SESSION['auth_ok']) ){
+    define('EDIT_OK', 'ok');
     $sign_in = 'Admin';
   }else{
+    define('EDIT_OK', 'no');
     $sign_in = 'Sign in';
   }
 
@@ -20,14 +22,14 @@ $author_count = db_get_field('SELECT COUNT(*) FROM authors');
 	  </div>
 	  
 	  <?php 
-	      if($sign_in === 'Admin'){
+	      if(EDIT_OK == 'ok'){
 		require('include/add_items.php');
 	      }
 	  ?>
 
 	  <div class="auth">
 	    <b>
-		<?php if($sign_in === 'Admin'){
+		<?php if(EDIT_OK == 'ok'){
 			require('include/out.php');
 		      }else{
 			require('include/sign_in.php');
@@ -39,7 +41,7 @@ $author_count = db_get_field('SELECT COUNT(*) FROM authors');
 
     <div style="float: left; width: 100%;">
     
-    <?php if($sign_in === 'Admin'){
+    <?php if(EDIT_OK == 'ok'){
 	    require('include/search.php');
 	  }else{
 	    require('include/no_search.php');
