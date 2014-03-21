@@ -6,6 +6,10 @@ require('functions/db.php');
 require('functions/debugs.php');
 require('functions/common.php');
 
+if( isset($_POST) ){
+    $_SESSION['post'] = $_POST;
+}
+//fn_print_r($_SESSION);
 $connect = fn_db_connect($config['db_host'],$config['db_user'],$config['db_password']);
 
 // Auto install, create db and tables
@@ -49,19 +53,21 @@ if( !empty($connect) ){
     
   if( isset($_POST['auth']) ){
       fn_sign_in($_POST['auth']); // start session
-    //  unset($_POST['auth']);
   }
   
   if( isset($_POST['out']) ){
       fn_sign_out($_POST['out']); // end session
-      //unset($_POST['out']);
   }
   
   if( !empty($_POST) ){
       fn_add_items($_POST);
+      fn_delete_items($_POST);
+      fn_edit_items($_POST);
   }
-  
- // unset($_POST);
+
+  if(isset($_SESSION['post'])){
+      $_SESSION['post_old'] = $_SESSION['post'];
+  }
   
 }else{
   fn_stop_work();

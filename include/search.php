@@ -18,6 +18,12 @@
 	
 	$query_s = "SELECT * FROM $table_select WHERE name like '%$q%'";
 	$search_rezult = db_get_array($query_s);
+	
+	if( empty($search_rezult) ){
+	    define('NO_REZULT', true);
+	}else{
+	    define('NO_REZULT', false);
+	}
 
     }else{
       $params['books'] = true;
