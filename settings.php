@@ -11,7 +11,7 @@ if (version_compare(phpversion(), "5.0.0", ">")==1) {
 };
 
 $config['db_host'] = 'localhost';
-$config['db_name'] = 'itech_test';
+$config['db_name'] = 'itech_test_nikolaychenko_autocreate';
 $config['db_user'] = 'root';
 $config['db_password'] = '1111';
 $config['db_type'] = 'mysql';

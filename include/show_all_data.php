@@ -14,7 +14,7 @@
 	}
     }
 ?>
-
+<div>
 <table class="features-table" style="float:left;">
     <thead>
       <tr>
@@ -97,6 +97,7 @@
     ?>
     </tbody>
 </table>
+</div>
 <?php
     if(EDIT_OK == 'ok' && NO_REZULT == false){
 	if( !empty($_REQUEST['t']) && !empty($_REQUEST['id'])){

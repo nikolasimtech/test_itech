@@ -51,7 +51,7 @@ function fn_db_query($query){
 }
 
 function fn_create_db_and_tables($name){
-    fn_db_create($config['db_name']); // create db if no exist
+    fn_db_create($name); // create db if no exist
 }
 
 function fn_tables_exists($tables){
