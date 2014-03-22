@@ -50,11 +50,11 @@
 
 /* -------------- button (tag) -------------- */
 
-button.button {
+.button {
 	border-left: none;
 	border-right: none;
 }
-button.button:hover {
+.button:hover {
 	cursor: pointer;
 }
 

@@ -21,7 +21,7 @@ function fn_add_items($items){
       
       $exist = db_get_field("SELECT * FROM authors WHERE authors.name = '$name'");
    
-      if( empty($exist) ){
+      if( empty($exist) && !empty($items['add_book_select']) ){
 	  $query = "INSERT INTO authors  SET authors.name = '$name' ;";
 	  $r = fn_db_query($query);
 	  
@@ -37,7 +37,7 @@ function fn_add_items($items){
 
       $exist = db_get_field("SELECT * FROM books WHERE books.name = '$name'");
        
-      if( empty($exist) ){
+      if( empty($exist) && !empty($items['add_author_select']) ){
 	  $query = "INSERT INTO books  SET books.name = '$name' ;";
 	  $r = fn_db_query($query);
 	  

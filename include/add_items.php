@@ -13,19 +13,17 @@
     <form name="add_books"  method="post" action="" style="text-align: center;">
       <input type="text" name="add_book" class="short_input button glossy" value="" style="width:100px;"/>
 	  <?php
-	  if( !empty($authors_add) ){
 	    $slector_a = '<select name="add_author_select" style="width:250px;" class="short_input button glossy" ><option value=""> Select author </option>';
-	    foreach($authors_add as $key_select => $v_select){
-		$id = $v_select['ID'];
-		$name = $v_select['name'];
-		$slector_a .= "<option value='$id' > $name </option>";
+	    if( !empty($authors_add) ){
+		foreach($authors_add as $key_select => $v_select){
+		    $id = $v_select['ID'];
+		    $name = $v_select['name'];
+		    $slector_a .= "<option value='$id' > $name </option>";
+		}
 	    }
 	    $slector_a .= '</select>';
-	    
 	    echo $slector_a;
-	  }
 	  ?>
- 
       <input type="submit" value="+ Add Book" class="button orange glossy" style="width: 200px;"/>
     </form>
 
@@ -33,19 +31,18 @@
      <input type="text" name="add_author"  class="short_input button glossy" value="" style="width:100px;" />
      
       <?php
-      if( !empty($books_add) ){
 	$slector_a = '<select name="add_book_select" style="width:250px;" class="short_input button glossy"><option value=""> Select book </option>';
-	foreach($books_add as $key_select_ => $v_select_){
-	    $id = $v_select_['ID'];
-	    $name = $v_select_['name'];
-	    $slector_a .= "<option value='$id' > $name </option>";
+	if( !empty($books_add) ){
+	    foreach($books_add as $key_select_ => $v_select_){
+		$id = $v_select_['ID'];
+		$name = $v_select_['name'];
+		$slector_a .= "<option value='$id' > $name </option>";
+	    }
 	}
 	$slector_a .= '</select>';
 	
 	echo $slector_a;
-      }
       ?>
-	  
      <input type="submit" value="+ Add Author" class="button orange glossy" style="width: 200px;"/>
     </form>
 </div>
